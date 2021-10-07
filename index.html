@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+   <link rel="stylesheet" href="./style/main.css">
+    <link rel="stylesheet" href="./style/bootstrap.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
+    <script>
+ /*Funcion de Capturar, Almacenar datos y Limpiar campos*/
+$(document).ready(function(){    
+    $('#boton-guardar').click(function(){        
+        /*Captura de datos escrito en los inputs*/        
+        var nom = document.getElementById("nombretxt").value;
+        var apel = document.getElementById("apellidotxt").value;
+        var cor = document.getElementById("correotxt").value;
+        var cel = document.getElementById("celulartxt").value;
+        var pass= document.getElementById("clavetxt").value;
+        
+        /*Guardando los datos en el LocalStorage*/
+        localStorage.setItem("Nombre", nom);
+        localStorage.setItem("Apellido", apel);
+        localStorage.setItem("correo", cor);
+        localStorage.setItem("celular", cel);
+        localStorage.setItem("clave", pass);
+        
+        /*Limpiando los campos o inputs*/
+        document.getElementById("nombretxt").value = "";
+        document.getElementById("apellidotxt").value = "";
+        document.getElementById("correotxt").value = "";
+        document.getElementById("celulartxt").value = "";
+        document.getElementById("clavetxt").value = "";
+    });   
+});
+</script> 
+</head>
+<body>
+    
+    <h4 style="text-align: center;">Formulario</h4>
+    <div class="form-container">
+
+        <form id="form1" novalidate method="post">
+           <input type="hidden"/>
+           <div class="form-group">
+               <label for="">Nombre</label>
+               <input type="text" id="nombretxt" required data-pristine-required-message="campo requerido" 
+               class="form-control" />
+           </div>
+          
+           <div class="form-group">
+               <label>Apellido</label>
+               <input type="text" id="apellidotxt"required data-pristine-required-message="campo requerido" 
+               class="form-control"
+               />
+           </div>
+        
+           <div class="form-group">
+            <label>Correo electronico</label>
+            <input type="text" id="correotxt" required data-pristine-required-message="campo requerido"
+            data-pristine-email-message="Este correo no es valido "
+            class="form-control"
+            />
+        </div>
+        <div class="form-group">
+            <label>Celular</label>
+            <input type="number" id="celulartxt"class="form-control" 
+                        data-pristine-required-message="Este campo es requerido"
+                        data-pristine-minlength-message="ingrese los numeros completos"
+            />
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="clavetxt" class="form-control"required
+            data-pristine-required-message="Este campo es requerido"
+            data-pristine-password-message="la contraseña no valida" />
+          </div>
+
+           <div class="form-group inline-label">
+               <input id="ch1" type="checkbox" name="future" required 
+               data-pristine-required-message="Debe Aceptar Termino Y Condiciones "/>
+               <label for="ch1">Acepto Terminos Y Condiciones</label><br/>
+           </div>
+           <div class="form-group">
+            <input type="submit" id="boton-guardar" class="btn btn-primary" value="Enviar" />
+           </div>
+        </form>
+     </div>
+
+
+    <script src="./script/main.js"></script>
+    <script src="script/pristine.min.js"></script>
+</body>
+</html>
